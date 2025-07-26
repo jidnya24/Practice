@@ -1,5 +1,6 @@
 // Login.tsx
 import React, { useState } from 'react';
+import './Login.css'; // Make sure this is correctly imported
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -7,98 +8,62 @@ const Login: React.FC = () => {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle login logic
+    // Handle login logic here
     console.log('Email:', email);
     console.log('Password:', password);
   };
 
   return (
-    <div style={styles.container}>
-      <form onSubmit={handleLogin} style={styles.form}>
-        <h2 style={styles.title}>Login</h2>
+    <div className="loginPageWrapper">
+      <div className="container">
+        <div className="formContainer">
+          <h2 className="title">Login</h2>
+          <form onSubmit={handleLogin} className="form">
+            <div className="inputGroup">
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
 
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          style={styles.input}
-        />
+            <div className="inputGroup">
+              <label htmlFor="password">Password</label>
+              <input
+                type="password"
+                id="password"
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
 
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          style={styles.input}
-        />
+            <button type="submit" className="loginButton">
+              Login
+            </button>
 
-        <button type="submit" style={styles.button}>Login</button>
+            <p className="registerText">
+              New here?{' '}
+              <a href="/register" className="registrationLink">
+                Register
+              </a>
+            </p>
 
-        <div style={styles.linkGroup}>
-          <p style={styles.text}>
-            New here? <a href="/register" style={styles.link}>Register</a>
-          </p>
-          <p>
-            <a href="/forgot-password" style={styles.link}>Forgot Password?</a>
-          </p>
+            <p className="forgotPassword">
+              <a href="/forgot-password" className="registrationLink">
+                Forgot Password?
+              </a>
+            </p>
+          </form>
         </div>
-      </form>
+      </div>
     </div>
   );
-};
-
-const styles: { [key: string]: React.CSSProperties } = {
-  container: {
-    minHeight: '100vh',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f5f6fa',
-  },
-  form: {
-    backgroundColor: '#fff',
-    padding: '2rem',
-    borderRadius: '12px',
-    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-    width: '320px',
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '1rem',
-  },
-  title: {
-    textAlign: 'center',
-    marginBottom: '1rem',
-  },
-  input: {
-    padding: '0.75rem',
-    borderRadius: '6px',
-    border: '1px solid #ccc',
-    fontSize: '1rem',
-  },
-  button: {
-    padding: '0.75rem',
-    backgroundColor: '#007bff',
-    color: '#fff',
-    border: 'none',
-    borderRadius: '6px',
-    cursor: 'pointer',
-    fontWeight: 'bold',
-  },
-  linkGroup: {
-    textAlign: 'center',
-    marginTop: '1rem',
-  },
-  text: {
-    marginBottom: '0.5rem',
-  },
-  link: {
-    color: '#007bff',
-    textDecoration: 'none',
-    fontWeight: 500,
-  },
 };
 
 export default Login;
