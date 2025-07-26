@@ -42,6 +42,24 @@ const Login: React.FC = () => {
                 required
               />
             </div>
+            //
+              <div className="loginPageWrapper">
+      <div className="container">
+        <div className="formContainer">
+          <h2 className="title">Login</h2>
+          <form onSubmit={handleLogin} className="form">
+            <div className="inputGroup">
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+            //
 
             <button type="submit" className="loginButton">
               Login
